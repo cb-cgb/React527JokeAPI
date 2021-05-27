@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { isDraft } from 'immer';
+import {AuthContext, AuthContxt} from '../AuthContext';
 
 class Home extends Component {
   state = {  
@@ -18,14 +18,14 @@ class Home extends Component {
    },
    enableLike:true ,
    enableNotLike:true ,
-   isloading: true
+   //isloading: true
          
   }
 
   componentDidMount =async () => {
    const {data} = await axios.get('/api/joke/getjoke'); //get new joke
    await this.setState({joke: data})
-   await this.setState({isloading: false});
+   //await this.setState({isloading: false});
    await this.enableDisableLike(); //present the like/dislike buttons correctly upon loading
    console.log(this.state);
  }
@@ -76,16 +76,10 @@ class Home extends Component {
   }
 
 
-   onClickLike =async() => {
+   onClickLike =async(like) => {
     const {id} = this.state.joke;
-    await axios.post('/api/joke/likejoke', {JokeId: id,  like:true });
+    await axios.post('/api/joke/likejoke', {JokeId: id,  like });
     this.enableDisableLike(); //enable/disable the like/not like based on the latest like action. 
-   }
-
-   onClickNotLike =async() => {
-    const {id} = this.state.joke;
-    await axios.post('/api/joke/likejoke', {jokeid: id, like:false});
-    this.enableDisableLike(); //enable/disable the like/not like based on the latest like action.  
    }
 
   
@@ -94,32 +88,50 @@ class Home extends Component {
     const {question, punchline} = this.state.joke;
 
     return ( 
-    <div>
-      {this.state.isloading && <h3>Loading...</h3>}    
-      {!this.state.isloading &&
-       <div className="row card card-body bg-light" style={{width: 500, textAlign: 'center'}} >
-         <h2 style={{textAlign:"center" }}> Joke</h2>
+      
+      <AuthContext.Consumer>
 
-         <span style={{color: 'blueviolet'}}>{question}</span>
-         <br/>
-         <span  style={{color: 'purple'}}>{punchline}</span>
-         <br/>
-         <div className = "row" >
-          <div className = "col-md-6">
-           <button disabled = {!this.state.enableLike} className="btn btn-success" onClick={this.onClickLike}>Like!</button>
-          </div>
-          <div className = "col-md-6">
-           <button disabled = {!this.state.enableNotLike} className="btn btn-danger" onClick={this.onClickNotLike}>Don't Like</button>
-          </div>
-         </div>
-         
-          <div >
-           <span style={{width:100, float: 'right'}}className = "btn text-info"  onClick={this.componentDidMount}>Next</span>
-          </div>
-         
-      </div>}
+        { value => {
+          const { user } = value;
+          const userLoggedIn = user;
 
-      </div>
+          return (
+            <div>
+              {!question && <h3>Loading...</h3>} 
+
+              {question &&
+                <div className="row card card-body bg-light" style={{ width: 500, textAlign: 'center' }} >
+                  <h2 style={{ textAlign: "center" }}> Joke</h2>
+
+                  <span style={{ color: 'blueviolet' }}>{question}</span>
+                 
+                  <br />
+                  <span style={{ color: 'purple' }}>{punchline}</span>
+                  {!userLoggedIn && <span style={{fontSize: 12}}>To like/dislike a joke please log in.</span>}
+                  
+                  <br />
+                  <div className="row" >
+                    <div className="col-md-6">
+                      <button disabled={!this.state.enableLike} className="btn btn-success" onClick={()=>this.onClickLike(true)}>Like!</button>
+                    </div>
+                    <div className="col-md-6">
+                      <button disabled={!this.state.enableNotLike} className="btn btn-danger" onClick={()=>this.onClickLike(false)}>Don't Like</button>
+                    </div>
+                  </div>
+
+                  <div >
+                    <span style={{ width: 100, float: 'right' }} className="btn text-info" onClick={this.componentDidMount}>Next</span>
+                  </div>
+
+                </div>}
+
+            </div>
+
+          )
+        }}
+       
+       </AuthContext.Consumer>
+      
       
     );
         

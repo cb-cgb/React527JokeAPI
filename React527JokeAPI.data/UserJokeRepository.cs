@@ -145,8 +145,9 @@ namespace React527JokeAPI.data
                                  full outer join
                                     (SELECT jokeId,count(*) countLikes from UserJokeLikes where [Like]=1  GROUP BY jokeId,[Like]) as likes
                                   on likes.jokeId = dislikes.JokeId
-                               ) counts, Jokes j
-                              WHERE counts.jokeId = j.id";
+                               ) counts  
+                                    right outer join Jokes j
+                                    on counts.jokeId = j.Id";
 
                 return context.JokeLikesCounts.FromSqlRaw(query).ToList();
 
@@ -190,13 +191,6 @@ namespace React527JokeAPI.data
             }
         }
 
-        //public  bool JokeExistsForUser(int jokeApiId,  int userId)
-        //{
-        //    using (var context = new UserJokeContext(_conn))
-        //    {
-        //        var jokeId = context.Jokes.FirstOrDefault(j => j.ResultJokeId == jokeApiId).Id;
-        //        return GetUserJokeLike(jokeId,userId) != null;
-        //    }
-        //}
+      
     }
 }
