@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React527JokeAPI.web", "React527JokeAPI.web\React527JokeAPI.web.csproj", "{8A00C821-19C8-482D-9EC2-D6104EC76520}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React527JokeAPI.Api", "React527JokeAPI.Api\React527JokeAPI.Api.csproj", "{8646849E-3875-410C-A581-CAD82E2810E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "React527JokeAPI.data", "React527JokeAPI.data\React527JokeAPI.data.csproj", "{6A178EB6-3E86-4E9F-B46A-4CBF4875BFD2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8A00C821-19C8-482D-9EC2-D6104EC76520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A00C821-19C8-482D-9EC2-D6104EC76520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A00C821-19C8-482D-9EC2-D6104EC76520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A00C821-19C8-482D-9EC2-D6104EC76520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8646849E-3875-410C-A581-CAD82E2810E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8646849E-3875-410C-A581-CAD82E2810E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8646849E-3875-410C-A581-CAD82E2810E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8646849E-3875-410C-A581-CAD82E2810E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A178EB6-3E86-4E9F-B46A-4CBF4875BFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A178EB6-3E86-4E9F-B46A-4CBF4875BFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A178EB6-3E86-4E9F-B46A-4CBF4875BFD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A178EB6-3E86-4E9F-B46A-4CBF4875BFD2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27C9BECA-F2A6-472A-B739-60D299F49B27}
+	EndGlobalSection
+EndGlobal
